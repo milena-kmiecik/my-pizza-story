@@ -1,7 +1,7 @@
 <!--header of application starts-->
 <nav class="row">
   <div class="nav-wrapper teal darken-3">
-    <a href="#" class="brand-logo center">My pizza story</a>
+    <a href="#" class="brand-logo center">My Pizza Story</a>
     <ul>
       <li class="s12 m4 l2"><a href="#">Ingredients</a></li>
       <li class="right"><a href="#"> My Pizzas</a></li>
@@ -9,12 +9,20 @@
   </div>
 </nav>
 <!--header of application ends-->
-
 <!--container with ingredients starts-->
 <div class="container q-container">
   <div class="row">
-    <div class="card-panel hoverable col s3">wef
+    <div class="card hoverable col s3">
+      <div class="card-image">
+        <img src="https://zasoby.ekologia.pl/artykulyNew/23527/xxl/shutterstock-74154670_800x600.jpg">
+      </div>
+      <a class="btn-floating halfway-fab waves-effect waves-light red">
+        <i class="material-icons">add</i></a>
+      <a class="btn-floating halfway-fab waves-effect waves-light red">
+        <i class="material-icons">delete</i></a>
+      <span class="card-title">Ingredient</span>
     </div>
+
     <div class="card-panel hoverable col s3">wf
     </div>
     <div class="card-panel hoverable col s3">wf
@@ -22,10 +30,9 @@
     <div class="card-panel hoverable col s3">f
     </div>
   </div>
-</div>
-<!--container with ingredients ends-->
-<!--summary form starts-->
-<div class="container q-container">
+  <!--container with ingredients ends-->
+
+  <!--summary form starts-->
   <div class="row edit-row">
     <div class="input-field col s4">
       <p class="">2 ingredients selected</p>
@@ -44,3 +51,44 @@
   </div>
 </div>
 <!--summary form ends-->
+<!--List with ready pizzas starts-->
+<table class="highlight">
+  <tbody>
+  <tr class="row">
+      <td class="card col s3">
+        <div>
+          <div class="card-image">
+            <img src="https://zasoby.ekologia.pl/artykulyNew/23527/xxl/shutterstock-74154670_800x600.jpg">
+          </div>
+          <span class="card-title">Pizza Title</span>
+        </div>
+      </td>
+      <td class="col s6 center">
+        <p class="col s4">kjhefoihncfe</p>
+        <p class="col s4">kjhefoihncfe</p>
+        <p class="col s4">kjhefoihncfe</p>
+        <p class="col s4">kjhefoihncfe</p>
+        <p class="col s4">kjhefoihncfe</p>
+        <p class="col s4">kjhefoihncfe</p>
+        <p class="col s4">kjhefoihncfe</p>
+        <p class="col s4">kjhefoihncfe</p>
+        <p class="col s4">kjhefoihncfe</p>
+      </td>
+<!--    A rating starts-->
+      <td class="col s3">
+        <div class="card center">Like it or hate it?</div>
+        <div class="card-action right-align">
+          <span class="badge grey left white-text">
+            5
+          </span>
+        <button class="btn green mr-3">
+          <i class="material-icons">exposure_plus_1</i>
+        </button> <button class="btn red mr-3">
+        <i class="material-icons">exposure_neg_1</i>
+      </button></div>
+      </td>
+    <!--    A rating ends-->
+  </tr>
+  </tbody>
+</table>
+<!--List with ready pizzas ends-->
