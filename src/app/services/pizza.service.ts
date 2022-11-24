@@ -2,6 +2,7 @@ import {Inject, Injectable} from "@angular/core";
 import {INGREDIENTS} from "../models/data-base";
 import {Pizza, ReadyPizzaView} from "../models/readypizza.model";
 import {IngredientsService} from "./ingredients.service";
+import {Ingredient} from "../models/ingredient.model";
 
 
 
@@ -17,13 +18,13 @@ export class PizzaService {
     this.ingredientsService = ingredientsService;
   }
 
-  getAllPizzas(){
+  getAllPizzas(): ReadyPizzaView[]{
     return this.pizzas.map(pizza => {
+      let ingredients: Ingredient[] = pizza.ingredientIds
+        .map(ingredientId => this.ingredientsService.getIngredientById(ingredientId))
       return {
         title: pizza.title,
-        ingredients: pizza.ingredientIds.map(ingredientId => {
-          this.ingredientsService.getIngredientById(ingredientId)
-        }),
+        ingredients: ingredients,
         votes: pizza.votes
       }
       });

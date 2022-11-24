@@ -4,7 +4,9 @@
     <a href="#" class="brand-logo center">My Pizza Story</a>
     <ul>
       <li class="s12 m4 l2"><a href="#">Ingredients</a></li>
-      <li class="right"><a href="#"> My Pizzas</a></li>
+      <li class="right"
+          *ngIf="readyPizzas.length  > 0"
+      ><a href="#"> My Pizzas</a></li>
     </ul>
   </div>
 </nav>
@@ -17,13 +19,25 @@
         <div class="card hoverable col s3" *ngFor="let ingredient of ingredients">
           <div class="card-image">
             <img
-                 src="{{ingredient.srcImg}}"
-                 alt="{{ingredient.alt}}"/>
+              src="{{ingredient.srcImg}}"
+              alt="{{ingredient.alt}}"/>
           </div>
-          <a class="btn-floating halfway-fab waves-effect waves-light red">
-            <i class="material-icons" (click)="addIngredient(ingredient)">add</i></a>
-<!--          <a class="btn-floating halfway-fab waves-effect waves-light red">-->
-<!--            <i class="material-icons">delete</i></a>-->
+
+
+
+            <button class="material-icons" (click)="addIngredient(ingredient)">add</button>
+
+            <button class="material-icons" (click)="deleteIngredient(ingredient)">delete</button>
+
+
+<!--          <ng-container *ngIf="addingMode; then addButtonAction; else deleteButtonAction"></ng-container>-->
+<!--          <ng-template #addButtonAction>-->
+<!--            <button class="material-icons" (click)="switchMode()">add</button>-->
+<!--          </ng-template>-->
+<!--          <ng-template #deleteButtonAction>-->
+<!--            <button class="material-icons" (click)="switchMode()">delete</button>-->
+<!--          </ng-template>-->
+
           <span class="card-title">{{ingredient.name}}</span>
         </div>
       </li>
@@ -34,24 +48,33 @@
   <!--summary form starts-->
   <div class="row">
     <div class="input-field col s4">
-      <p class="">2 ingredients selected</p>
+      <p>{{readyPizza.ingredients.length}} ingredients selected</p>
       <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-             aria-valuemax="100"></div>
+        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="1"
+             aria-valuemax="8"></div>
       </div>
     </div>
     <div class="input-field col s4">
       <label for="pizzaName"></label>
-      <input id="pizzaName" type="text" placeholder="Name Your Pizza!">
+      <input id="pizzaName"
+             type="text"
+             placeholder="Name Your Pizza!"
+             [(ngModel)]="readyPizza.title"
+      >
     </div>
     <div class="input-field col s4">
-      <button class="btn small">Bake IT!</button>
+      <button
+        class="btn small"
+        (click)="addPizza()"
+        [disabled]="readyPizza.ingredients.length === 0 || readyPizza.title ===''"
+      >Bake IT!
+      </button>
     </div>
   </div>
 </div>
 <!--summary form ends-->
 <!--List with ready pizzas starts-->
-<table class="highlight">
+<table class="highlight" *ngIf="readyPizzas.length  > 0">
   <tbody>
   <tr class="row">
     <td class="card col s3">
@@ -94,5 +117,5 @@
 </table>
 <!--List with ready pizzas ends-->
 <!--Selected pizza's index footer starts-->
-<p class="row center"> number of pizzas: 13</p>
+<p class="row center" *ngIf="readyPizzas.length  > 0"> number of pizzas: {{readyPizzas.length}}</p>
 <!--Selected pizza's index footer ends-->

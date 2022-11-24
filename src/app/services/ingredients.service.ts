@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {INGREDIENTS} from "../models/data-base";
+import {Ingredient} from "../models/ingredient.model";
 
 
 
@@ -16,6 +17,6 @@ export class IngredientsService {
         return ingredient;
       }
     }
-    return null;
+    return INGREDIENTS[0];
   }
 }

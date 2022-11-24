@@ -24,14 +24,26 @@ export class AppComponent {
     votes: 0,
   }
   ingredients: Ingredient[] = this.ingredientService.getAllIngredients();
-
+  readyPizzas: ReadyPizzaView[] = this.pizzaService.getAllPizzas();
+  addingMode = true;
 
   addPizza() {
-    this.pizzaService.addPizza(this.readyPizza)
+    this.pizzaService.addPizza(this.readyPizza);
+    console.log(this.pizzaService.getAllPizzas());
   }
-  addIngredient(ingredient:Ingredient) {
-     this.readyPizza.ingredients.push(ingredient);
+
+  addIngredient(ingredient: Ingredient) {
+    this.readyPizza.ingredients.push(ingredient);
     console.log(this.readyPizza.ingredients)
   }
+
+  deleteIngredient(ingredient: Ingredient) {
+    const indexToDelete: number = this.readyPizza.ingredients.indexOf(ingredient)
+    if (indexToDelete > -1) {
+      this.readyPizza.ingredients.splice(indexToDelete, 1)
+    }
+    console.log(this.readyPizza.ingredients)
+  }
+
 
 }
