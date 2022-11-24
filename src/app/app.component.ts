@@ -24,8 +24,7 @@ export class AppComponent {
     votes: 0,
   }
   ingredients: Ingredient[] = this.ingredientService.getAllIngredients();
-  readyPizzas: ReadyPizzaView[] = this.pizzaService.getAllPizzas();
-  addingMode = true;
+
 
   addPizza() {
     this.pizzaService.addPizza(this.readyPizza);
@@ -45,5 +44,22 @@ export class AppComponent {
     console.log(this.readyPizza.ingredients)
   }
 
+  getIngredientsCount(): number {
+    return this.readyPizza.ingredients.length;
+  }
+
+  checkNameAvailability(title: string): boolean {
+    return this.getAllPizzas()
+      .filter(pizza => pizza.title === title).length == 0;
+  }
+
+
+  getPizzasCount() {
+    return this.pizzaService.getAllPizzas().length;
+  }
+
+  getAllPizzas() {
+    return this.pizzaService.getAllPizzas();
+  }
 
 }
