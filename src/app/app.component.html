@@ -5,7 +5,7 @@
     <ul>
       <li class="s12 m4 l2"><a href="#">Ingredients</a></li>
       <li class="right"
-          *ngIf="readyPizzas.length  > 0"
+          *ngIf="getPizzasCount() > 0"
       ><a href="#"> My Pizzas</a></li>
     </ul>
   </div>
@@ -24,19 +24,18 @@
           </div>
 
 
+          <button class="material-icons" (click)="addIngredient(ingredient)">add</button>
 
-            <button class="material-icons" (click)="addIngredient(ingredient)">add</button>
-
-            <button class="material-icons" (click)="deleteIngredient(ingredient)">delete</button>
+          <button class="material-icons" (click)="deleteIngredient(ingredient)">delete</button>
 
 
-<!--          <ng-container *ngIf="addingMode; then addButtonAction; else deleteButtonAction"></ng-container>-->
-<!--          <ng-template #addButtonAction>-->
-<!--            <button class="material-icons" (click)="switchMode()">add</button>-->
-<!--          </ng-template>-->
-<!--          <ng-template #deleteButtonAction>-->
-<!--            <button class="material-icons" (click)="switchMode()">delete</button>-->
-<!--          </ng-template>-->
+          <!--          <ng-container *ngIf="addingMode; then addButtonAction; else deleteButtonAction"></ng-container>-->
+          <!--          <ng-template #addButtonAction>-->
+          <!--            <button class="material-icons" (click)="switchMode()">add</button>-->
+          <!--          </ng-template>-->
+          <!--          <ng-template #deleteButtonAction>-->
+          <!--            <button class="material-icons" (click)="switchMode()">delete</button>-->
+          <!--          </ng-template>-->
 
           <span class="card-title">{{ingredient.name}}</span>
         </div>
@@ -66,7 +65,9 @@
       <button
         class="btn small"
         (click)="addPizza()"
-        [disabled]="readyPizza.ingredients.length === 0 || readyPizza.title ===''"
+        [disabled]="readyPizza.ingredients.length === 0
+        || readyPizza.title ==='' ||
+         getIngredientsCount() > 8"
       >Bake IT!
       </button>
     </div>
@@ -74,27 +75,19 @@
 </div>
 <!--summary form ends-->
 <!--List with ready pizzas starts-->
-<table class="highlight" *ngIf="readyPizzas.length  > 0">
+<table class="highlight" *ngIf="getPizzasCount() > 0">
   <tbody>
-  <tr class="row">
+  <tr class="row" *ngFor="let pizza of getAllPizzas()">
     <td class="card col s3">
       <div>
         <div class="card-image">
           <img src="https://zasoby.ekologia.pl/artykulyNew/23527/xxl/shutterstock-74154670_800x600.jpg">
         </div>
-        <span class="card-title">Pizza Title</span>
+        <span class="card-title">{{pizza.title}}</span>
       </div>
     </td>
-    <td class="col s6 center">
-      <p class="col s4">kjhefoihncfe</p>
-      <p class="col s4">kjhefoihncfe</p>
-      <p class="col s4">kjhefoihncfe</p>
-      <p class="col s4">kjhefoihncfe</p>
-      <p class="col s4">kjhefoihncfe</p>
-      <p class="col s4">kjhefoihncfe</p>
-      <p class="col s4">kjhefoihncfe</p>
-      <p class="col s4">kjhefoihncfe</p>
-      <p class="col s4">kjhefoihncfe</p>
+    <td class="col s6 center" *ngFor="let ingredient of pizza.ingredients">
+      <p class="col s4">{{ingredient.name}}</p>
     </td>
     <!--    A rating starts-->
     <td class="col s3">
@@ -117,5 +110,5 @@
 </table>
 <!--List with ready pizzas ends-->
 <!--Selected pizza's index footer starts-->
-<p class="row center" *ngIf="readyPizzas.length  > 0"> number of pizzas: {{readyPizzas.length}}</p>
+<p class="row center" *ngIf="getPizzasCount() > 0"> number of pizzas: {{getPizzasCount()}}</p>
 <!--Selected pizza's index footer ends-->
