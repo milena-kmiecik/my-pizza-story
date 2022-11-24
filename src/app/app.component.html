@@ -4,94 +4,118 @@
     <a href="#" class="brand-logo center">My Pizza Story</a>
     <ul>
       <li class="s12 m4 l2"><a href="#">Ingredients</a></li>
-      <li class="right"><a href="#"> My Pizzas</a></li>
+      <li class="right"
+          *ngIf="readyPizzas.length  > 0"
+      ><a href="#"> My Pizzas</a></li>
     </ul>
   </div>
 </nav>
 <!--header of application ends-->
 <!--container with ingredients starts-->
 <div class="container q-container">
-  <div class="row">
-    <div class="card hoverable col s3">
-      <div class="card-image">
-        <img src="https://zasoby.ekologia.pl/artykulyNew/23527/xxl/shutterstock-74154670_800x600.jpg">
-      </div>
-      <a class="btn-floating halfway-fab waves-effect waves-light red">
-        <i class="material-icons">add</i></a>
-      <a class="btn-floating halfway-fab waves-effect waves-light red">
-        <i class="material-icons">delete</i></a>
-      <span class="card-title">Ingredient</span>
-    </div>
+  <div>
+    <ul>
+      <li class="row">
+        <div class="card hoverable col s3" *ngFor="let ingredient of ingredients">
+          <div class="card-image">
+            <img
+              src="{{ingredient.srcImg}}"
+              alt="{{ingredient.alt}}"/>
+          </div>
 
-    <div class="card-panel hoverable col s3">wf
-    </div>
-    <div class="card-panel hoverable col s3">wf
-    </div>
-    <div class="card-panel hoverable col s3">f
-    </div>
+
+
+            <button class="material-icons" (click)="addIngredient(ingredient)">add</button>
+
+            <button class="material-icons" (click)="deleteIngredient(ingredient)">delete</button>
+
+
+<!--          <ng-container *ngIf="addingMode; then addButtonAction; else deleteButtonAction"></ng-container>-->
+<!--          <ng-template #addButtonAction>-->
+<!--            <button class="material-icons" (click)="switchMode()">add</button>-->
+<!--          </ng-template>-->
+<!--          <ng-template #deleteButtonAction>-->
+<!--            <button class="material-icons" (click)="switchMode()">delete</button>-->
+<!--          </ng-template>-->
+
+          <span class="card-title">{{ingredient.name}}</span>
+        </div>
+      </li>
+    </ul>
   </div>
   <!--container with ingredients ends-->
 
   <!--summary form starts-->
-  <div class="row edit-row">
+  <div class="row">
     <div class="input-field col s4">
-      <p class="">2 ingredients selected</p>
+      <p>{{readyPizza.ingredients.length}} ingredients selected</p>
       <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-             aria-valuemax="100"></div>
+        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="1"
+             aria-valuemax="8"></div>
       </div>
     </div>
     <div class="input-field col s4">
       <label for="pizzaName"></label>
-      <input id="pizzaName" type="text" placeholder="Name Your Pizza!">
+      <input id="pizzaName"
+             type="text"
+             placeholder="Name Your Pizza!"
+             [(ngModel)]="readyPizza.title"
+      >
     </div>
     <div class="input-field col s4">
-      <button class="btn small">Bake IT!</button>
+      <button
+        class="btn small"
+        (click)="addPizza()"
+        [disabled]="readyPizza.ingredients.length === 0 || readyPizza.title ===''"
+      >Bake IT!
+      </button>
     </div>
   </div>
 </div>
 <!--summary form ends-->
 <!--List with ready pizzas starts-->
-<table class="highlight">
+<table class="highlight" *ngIf="readyPizzas.length  > 0">
   <tbody>
   <tr class="row">
-      <td class="card col s3">
-        <div>
-          <div class="card-image">
-            <img src="https://zasoby.ekologia.pl/artykulyNew/23527/xxl/shutterstock-74154670_800x600.jpg">
-          </div>
-          <span class="card-title">Pizza Title</span>
+    <td class="card col s3">
+      <div>
+        <div class="card-image">
+          <img src="https://zasoby.ekologia.pl/artykulyNew/23527/xxl/shutterstock-74154670_800x600.jpg">
         </div>
-      </td>
-      <td class="col s6 center">
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-      </td>
-<!--    A rating starts-->
-      <td class="col s3">
-        <div class="card center">Like it or hate it?</div>
-        <div class="card-action right-align">
+        <span class="card-title">Pizza Title</span>
+      </div>
+    </td>
+    <td class="col s6 center">
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+    </td>
+    <!--    A rating starts-->
+    <td class="col s3">
+      <div class="card center">Like it or hate it?</div>
+      <div class="card-action right-align">
           <span class="badge grey left white-text">
             5
           </span>
         <button class="btn green mr-3">
           <i class="material-icons">exposure_plus_1</i>
-        </button> <button class="btn red mr-3">
-        <i class="material-icons">exposure_neg_1</i>
-      </button></div>
-      </td>
+        </button>
+        <button class="btn red mr-3">
+          <i class="material-icons">exposure_neg_1</i>
+        </button>
+      </div>
+    </td>
     <!--    A rating ends-->
   </tr>
   </tbody>
 </table>
 <!--List with ready pizzas ends-->
 <!--Selected pizza's index footer starts-->
-<p  class="row center"> number of pizzas: 13</p>
+<p class="row center" *ngIf="readyPizzas.length  > 0"> number of pizzas: {{readyPizzas.length}}</p>
 <!--Selected pizza's index footer ends-->
