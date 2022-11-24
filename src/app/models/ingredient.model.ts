@@ -1,5 +1,6 @@
 export interface Ingredient {
-  src: string;
+  id: number;
+  srcImg: string;
   name: string;
   alt:string;
   isSelected: boolean;

@@ -11,24 +11,23 @@
 <!--header of application ends-->
 <!--container with ingredients starts-->
 <div class="container q-container">
-  <div class="row">
-    <div class="card hoverable col s3">
-      <div class="card-image">
-        <img src="https://zasoby.ekologia.pl/artykulyNew/23527/xxl/shutterstock-74154670_800x600.jpg" alt="mushrooms photo">
-      </div>
-      <a class="btn-floating halfway-fab waves-effect waves-light red">
-        <i class="material-icons">add</i></a>
-      <a class="btn-floating halfway-fab waves-effect waves-light red">
-        <i class="material-icons">delete</i></a>
-      <span class="card-title">Ingredient</span>
-    </div>
-
-    <div class="card-panel hoverable col s3">wf
-    </div>
-    <div class="card-panel hoverable col s3">wf
-    </div>
-    <div class="card-panel hoverable col s3">f
-    </div>
+  <div>
+    <ul>
+      <li class="row">
+        <div class="card hoverable col s3" *ngFor="let ingredient of ingredients">
+          <div class="card-image">
+            <img
+                 src="{{ingredient.srcImg}}"
+                 alt="{{ingredient.alt}}"/>
+          </div>
+          <a class="btn-floating halfway-fab waves-effect waves-light red">
+            <i class="material-icons" (click)="addIngredient(ingredient)">add</i></a>
+<!--          <a class="btn-floating halfway-fab waves-effect waves-light red">-->
+<!--            <i class="material-icons">delete</i></a>-->
+          <span class="card-title">{{ingredient.name}}</span>
+        </div>
+      </li>
+    </ul>
   </div>
   <!--container with ingredients ends-->
 
@@ -55,43 +54,45 @@
 <table class="highlight">
   <tbody>
   <tr class="row">
-      <td class="card col s3">
-        <div>
-          <div class="card-image">
-            <img src="https://zasoby.ekologia.pl/artykulyNew/23527/xxl/shutterstock-74154670_800x600.jpg">
-          </div>
-          <span class="card-title">Pizza Title</span>
+    <td class="card col s3">
+      <div>
+        <div class="card-image">
+          <img src="https://zasoby.ekologia.pl/artykulyNew/23527/xxl/shutterstock-74154670_800x600.jpg">
         </div>
-      </td>
-      <td class="col s6 center">
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-        <p class="col s4">kjhefoihncfe</p>
-      </td>
-<!--    A rating starts-->
-      <td class="col s3">
-        <div class="card center">Like it or hate it?</div>
-        <div class="card-action right-align">
+        <span class="card-title">Pizza Title</span>
+      </div>
+    </td>
+    <td class="col s6 center">
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+      <p class="col s4">kjhefoihncfe</p>
+    </td>
+    <!--    A rating starts-->
+    <td class="col s3">
+      <div class="card center">Like it or hate it?</div>
+      <div class="card-action right-align">
           <span class="badge grey left white-text">
             5
           </span>
         <button class="btn green mr-3">
           <i class="material-icons">exposure_plus_1</i>
-        </button> <button class="btn red mr-3">
-        <i class="material-icons">exposure_neg_1</i>
-      </button></div>
-      </td>
+        </button>
+        <button class="btn red mr-3">
+          <i class="material-icons">exposure_neg_1</i>
+        </button>
+      </div>
+    </td>
     <!--    A rating ends-->
   </tr>
   </tbody>
 </table>
 <!--List with ready pizzas ends-->
 <!--Selected pizza's index footer starts-->
-<p  class="row center"> number of pizzas: 13</p>
+<p class="row center"> number of pizzas: 13</p>
 <!--Selected pizza's index footer ends-->
