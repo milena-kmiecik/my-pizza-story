@@ -11,14 +11,6 @@
           <p class="flow-text">{{ingredient.name}}</p>
           <button class="btn-floating waves-effect waves-teal btn-flat red right" (click)="addIngredient(ingredient)"><i class="material-icons">add</i></button>
           <button class="btn-floating waves-effect waves-teal btn-flat red right" (click)="deleteIngredient(ingredient)"><i class="material-icons">delete</i></button>
-
-          <!--          <ng-container *ngIf="addingMode; then addButtonAction; else deleteButtonAction"></ng-container>-->
-          <!--          <ng-template #addButtonAction>-->
-          <!--            <button class="material-icons" (click)="switchMode()">add</button>-->
-          <!--          </ng-template>-->
-          <!--          <ng-template #deleteButtonAction>-->
-          <!--            <button class="material-icons" (click)="switchMode()">delete</button>-->
-          <!--          </ng-template>-->
         </div>
       </li>
     </ul>
