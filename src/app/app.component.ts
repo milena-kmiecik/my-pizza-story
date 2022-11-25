@@ -17,49 +17,7 @@ export class AppComponent {
               private pizzaService: PizzaService) {
   }
 
-  title = 'my-pizza-story';
-  readyPizza: ReadyPizzaView = {
-    title: '',
-    ingredients: [],
-    votes: 0,
-  }
-  ingredients: Ingredient[] = this.ingredientService.getAllIngredients();
 
 
-  addPizza() {
-    this.pizzaService.addPizza(this.readyPizza);
-    console.log(this.pizzaService.getAllPizzas());
-  }
-
-  addIngredient(ingredient: Ingredient) {
-    this.readyPizza.ingredients.push(ingredient);
-    console.log(this.readyPizza.ingredients)
-  }
-
-  deleteIngredient(ingredient: Ingredient) {
-    const indexToDelete: number = this.readyPizza.ingredients.indexOf(ingredient)
-    if (indexToDelete > -1) {
-      this.readyPizza.ingredients.splice(indexToDelete, 1)
-    }
-    console.log(this.readyPizza.ingredients)
-  }
-
-  getIngredientsCount(): number {
-    return this.readyPizza.ingredients.length;
-  }
-
-  checkNameAvailability(title: string): boolean {
-    return this.getAllPizzas()
-      .filter(pizza => pizza.title === title).length == 0;
-  }
-
-
-  getPizzasCount() {
-    return this.pizzaService.getAllPizzas().length;
-  }
-
-  getAllPizzas() {
-    return this.pizzaService.getAllPizzas();
-  }
 
 }
