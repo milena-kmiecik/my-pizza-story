@@ -17,6 +17,7 @@ export class CardsComponent implements OnInit {
     ingredients: [],
     votes: 0,
   }
+  maxIgredientsCount = 8;
 
   constructor(private ingredientService: IngredientsService,
               private pizzaService: PizzaService) {
@@ -54,5 +55,9 @@ export class CardsComponent implements OnInit {
 
   getAllPizzas() {
     return this.pizzaService.getAllPizzas();
+  }
+
+  ingredientsPercent() {
+    return Math.round((this.getIngredientsCount() / this.maxIgredientsCount)*100)
   }
 }
