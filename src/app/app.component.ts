@@ -18,8 +18,6 @@ export class AppComponent {
   }
 
 
-  getPizzasCount() {
-    return this.pizzaService.getAllPizzas().length;
-  }
+
 
 }
