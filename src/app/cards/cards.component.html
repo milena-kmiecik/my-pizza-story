@@ -8,12 +8,9 @@
               src="{{ingredient.srcImg}}"
               alt="{{ingredient.alt}}"/>
           </div>
-
-
-          <button class="material-icons" (click)="addIngredient(ingredient)">add</button>
-
-          <button class="material-icons" (click)="deleteIngredient(ingredient)">delete</button>
-
+          <p class="flow-text">{{ingredient.name}}</p>
+          <button class="btn-floating waves-effect waves-teal btn-flat red right" (click)="addIngredient(ingredient)"><i class="material-icons">add</i></button>
+          <button class="btn-floating waves-effect waves-teal btn-flat red right" (click)="deleteIngredient(ingredient)"><i class="material-icons">delete</i></button>
 
           <!--          <ng-container *ngIf="addingMode; then addButtonAction; else deleteButtonAction"></ng-container>-->
           <!--          <ng-template #addButtonAction>-->
@@ -22,8 +19,6 @@
           <!--          <ng-template #deleteButtonAction>-->
           <!--            <button class="material-icons" (click)="switchMode()">delete</button>-->
           <!--          </ng-template>-->
-
-          <span class="card-title">{{ingredient.name}}</span>
         </div>
       </li>
     </ul>
