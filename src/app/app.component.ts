@@ -22,8 +22,4 @@ export class AppComponent {
     return this.pizzaService.getAllPizzas().length;
   }
 
-  getAllPizzas() {
-    return this.pizzaService.getAllPizzas();
-  }
-
 }

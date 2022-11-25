@@ -1,1 +1,36 @@
-<p>pizzas-list works!</p>
+<table class="highlight" *ngIf="getPizzasCount() > 0">
+  <tbody>
+  <tr class="row" *ngFor="let pizza of getAllPizzas()">
+    <td class="card col s3">
+      <div>
+        <div class="card-image">
+          <img src="https://zasoby.ekologia.pl/artykulyNew/23527/xxl/shutterstock-74154670_800x600.jpg">
+        </div>
+        <span class="card-title">{{pizza.title}}</span>
+      </div>
+    </td>
+    <td class="col s6 center" *ngFor="let ingredient of pizza.ingredients">
+      <p class="col s4">{{ingredient.name}}</p>
+    </td>
+    <!--    A rating starts-->
+    <td class="col s3">
+      <div class="card center">Like it or hate it?</div>
+      <div class="card-action right-align">
+          <span class="badge grey left white-text">
+            5
+          </span>
+        <button class="btn green mr-3">
+          <i class="material-icons">exposure_plus_1</i>
+        </button>
+        <button class="btn red mr-3">
+          <i class="material-icons">exposure_neg_1</i>
+        </button>
+      </div>
+    </td>
+    <!--    A rating ends-->
+  </tr>
+  </tbody>
+</table>
+<!--Selected pizza's index footer starts-->
+<p class="row center" *ngIf="getPizzasCount() > 0"> number of pizzas: {{getPizzasCount()}}</p>
+<!--Selected pizza's index footer ends-->
