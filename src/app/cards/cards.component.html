@@ -1,4 +1,5 @@
 <div class="container">
+
 <div class="list">
     <ul>
       <li class="row">
@@ -8,23 +9,22 @@
               src="{{ingredient.srcImg}}"
               alt="{{ingredient.alt}}"/>
           </div>
-          <p class="flow-text">{{ingredient.name}}</p>
+          <p class="flow-text center">{{ingredient.name}}</p>
           <button class="btn-floating waves-effect waves-teal btn-flat red right" (click)="addIngredient(ingredient)"><i class="material-icons">add</i></button>
           <button class="btn-floating waves-effect waves-teal btn-flat red right" (click)="deleteIngredient(ingredient)"><i class="material-icons">delete</i></button>
         </div>
       </li>
     </ul>
 </div>
-  <!--container with ingredients ends-->
+  <!--list with ingredients ends-->
 
   <!--summary form starts-->
-  <div class="row">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="row center">
     <div class="input-field col s4">
-      <p>{{readyPizza.ingredients.length}} ingredients selected</p>
+      <p class="helper-text">{{readyPizza.ingredients.length}} ingredients selected</p>
       <div class="progress">
         <div class = "determinate" style = "width:{{ingredientsPercent()}}%"></div>
-        <!--        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="3" aria-valuemin="1"-->
-        <!--             aria-valuemax="8"></div>-->
       </div>
     </div>
     <div class="input-field col s4">
@@ -32,18 +32,20 @@
       <input id="pizzaName"
              type="text"
              placeholder="Name Your Pizza!"
-             [(ngModel)]="readyPizza.title"
+             ngModel
+             class="form-control"
+             name="readyPizzaTitle"
+
       >
     </div>
     <div class="input-field col s4">
       <button
+        type="submit"
         class="btn small"
-        (click)="addPizza()"
-        [disabled]="readyPizza.ingredients.length === 0
-        || readyPizza.title ==='' ||
-         getIngredientsCount() > maxIgredientsCount"
       >Bake IT!
       </button>
     </div>
-  </div>
+    </div>
+  </form>
 </div>
+
