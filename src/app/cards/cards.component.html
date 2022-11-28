@@ -22,7 +22,14 @@
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="row center">
     <div class="input-field col s4">
-      <p class="helper-text">{{readyPizza.ingredients.length}} ingredients selected</p>
+      <ng-container *ngIf="readyPizza.ingredients.length > maxIgredientsCount;then counter ;else amount"></ng-container>
+       <ng-template #counter>
+       <p class="helper-text">Too much ingredients! Maximum amount for you is {{maxIgredientsCount}}</p> </ng-template>
+       <ng-template #amount>
+        <p class="helper-text"
+        >{{readyPizza.ingredients.length}} ingredients selected</p></ng-template>
+
+
       <div class="progress">
         <div class = "determinate" style = "width:{{ingredientsPercent()}}%"></div>
       </div>
@@ -35,6 +42,7 @@
              ngModel
              class="form-control"
              name="readyPizzaTitle"
+             required
 
       >
     </div>
@@ -42,6 +50,7 @@
       <button
         type="submit"
         class="btn small"
+        [disabled]="f.invalid || readyPizza.ingredients.length <= 0 "
       >Bake IT!
       </button>
     </div>
