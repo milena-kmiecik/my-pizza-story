@@ -3,3 +3,7 @@
   width: 100%;
   overflow-y: scroll;
 }
+
+.ng-invalid.ng-touched:not(form) {
+  border-bottom: 1px solid red;
+}

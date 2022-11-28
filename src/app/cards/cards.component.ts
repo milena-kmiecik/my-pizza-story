@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {Ingredient} from "../models/ingredient.model";
 import {PizzaService} from "../services/pizza.service";
 import {IngredientsService} from "../services/ingredients.service";
 import {ReadyPizzaView} from "../models/readypizza.model";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-cards',
@@ -28,7 +30,7 @@ export class CardsComponent implements OnInit {
 
   addIngredient(ingredient: Ingredient) {
     this.readyPizza.ingredients.push(ingredient);
-    console.log(this.readyPizza.ingredients)
+    console.log('add ingredient' + this.readyPizza.ingredients)
   }
 
   deleteIngredient(ingredient: Ingredient) {
@@ -36,12 +38,19 @@ export class CardsComponent implements OnInit {
     if (indexToDelete > -1) {
       this.readyPizza.ingredients.splice(indexToDelete, 1)
     }
-    console.log(this.readyPizza.ingredients)
+    console.log('delete.ingredient' + this.readyPizza.ingredients)
   }
 
   addPizza() {
     this.pizzaService.addPizza(this.readyPizza);
-    console.log(this.pizzaService.getAllPizzas());
+    for (const ingredient of this.ingredients) {
+      ingredient.isSelected = false;
+    }
+    this.readyPizza = {
+      title: '',
+      ingredients: [],
+      votes: 0,
+    }
   }
 
   getIngredientsCount(): number {
@@ -60,4 +69,12 @@ export class CardsComponent implements OnInit {
   ingredientsPercent() {
     return Math.round((this.getIngredientsCount() / this.maxIgredientsCount)*100)
   }
+  onSubmit(form: NgForm){
+    if (form.value.readyPizzaTitle != null) {
+      this.readyPizza.title = form.value.readyPizzaTitle.toString()
+    }
+    form.form.get("readyPizzaTitle")?.reset();
+    this.addPizza()
+  }
+
 }
