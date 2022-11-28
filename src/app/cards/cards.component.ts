@@ -3,7 +3,7 @@ import {Ingredient} from "../models/ingredient.model";
 import {PizzaService} from "../services/pizza.service";
 import {IngredientsService} from "../services/ingredients.service";
 import {ReadyPizzaView} from "../models/readypizza.model";
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgForm} from "@angular/forms";
 
 @Component({
@@ -20,7 +20,6 @@ export class CardsComponent implements OnInit {
     votes: 0,
   }
   maxIgredientsCount = 8;
-  ingredientsForm: any;
 
   constructor(private ingredientService: IngredientsService,
               private pizzaService: PizzaService) {
@@ -44,6 +43,14 @@ export class CardsComponent implements OnInit {
 
   addPizza() {
     this.pizzaService.addPizza(this.readyPizza);
+    for (const ingredient of this.ingredients) {
+      ingredient.isSelected = false;
+    }
+    this.readyPizza = {
+      title: '',
+      ingredients: [],
+      votes: 0,
+    }
   }
 
   getIngredientsCount(): number {
@@ -66,6 +73,8 @@ export class CardsComponent implements OnInit {
     if (form.value.readyPizzaTitle != null) {
       this.readyPizza.title = form.value.readyPizzaTitle.toString()
     }
+    form.form.get("readyPizzaTitle")?.reset();
     this.addPizza()
   }
+
 }
